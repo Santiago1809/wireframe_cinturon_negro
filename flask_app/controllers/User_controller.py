@@ -39,24 +39,27 @@ class UserController():
     
     @user.route('/login', methods=['POST'])
     def login():
-        email = request.form['email_login']
-        password = request.form['password_login']
+        try:
+            email = request.form['email_login']
+            password = request.form['password_login']
 
-        # Verifica si el usuario existe
-        user = UserUtil().find_user_by_email(email)
-        if user is None:
-            flash("Usuario no existe")
-            return redirect('/')
+            # Verifica si el usuario existe
+            user = UserUtil().find_user_by_email(email)
+            if user is None:
+                flash("Usuario no existe")
+                return redirect('/')
 
-        # Verifica la contraseña
-        if UserUtil().check_password(password, email):
-            session['logged_in'] = True
-            session['name'] = UserUtil().get_name(email)
-            session['id'] = UserUtil().get_id(email)
-            return redirect('/thoughts')
-        else:
-            flash("Contraseña incorrecta")
-            return redirect('/')
+            # Verifica la contraseña
+            if UserUtil().check_password(password, email):
+                session['logged_in'] = True
+                session['name'] = UserUtil().get_name(email)
+                session['id'] = UserUtil().get_id(email)
+                return redirect('/thoughts')
+            else:
+                flash("Contraseña incorrecta")
+                return redirect('/')
+        except Exception as e:
+            return f'Error: {str(e)}'
         
     @user.route('/logout')
     def logout():
