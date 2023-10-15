@@ -20,7 +20,7 @@ class Conexion:
   def export(self):
     return self.conexion, self.cursor
   
-conexion = Conexion('localhost',3306, 'root', 'secur3P4ssw0rd', 'thoughts_db')
+conexion = Conexion('localhost',3306, 'root', '', 'wireframe_cinturon_negro')
 conexion.conectar()
 
 conexion, cursor = conexion.export()
