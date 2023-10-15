@@ -21,7 +21,7 @@ class Conexion:
   def export(self):
     return self.conexion, self.cursor
   
-conexion = Conexion('localhost',3306, 'root', 'secur3P4ssword', 'wireframe')
+conexion = Conexion('containers-us-west-57.railway.app',6808, 'root', '5LgIs8UEGchICCLETBEh', 'railway') 
 conexion.conectar()
 
 conexion, cursor = conexion.export()
